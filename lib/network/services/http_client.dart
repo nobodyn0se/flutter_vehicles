@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -33,6 +34,31 @@ class HttpClient {
       if (e.response != null) {
         log('Response data: ${e.response?.data}');
       }
+      throw HttpException('${e.message}');
+    }
+  }
+
+  Future<dynamic> post(
+    String apiURL, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
+    bool encodeJson = true,
+  }) async {
+    try {
+      var response = await _dio.post(apiURL,
+          options: Options(headers: headers),
+          data: encodeJson ? jsonEncode(data) : data,
+          queryParameters: queryParameters);
+
+      return response.data;
+    } on DioException catch (e) {
+      log('Error logged in HTTP Client POST: ${e.message}');
+
+      if (e.response != null) {
+        log('Response data: ${e.response?.data}');
+      }
+
       throw HttpException('${e.message}');
     }
   }
