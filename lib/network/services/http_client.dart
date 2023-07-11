@@ -1,32 +1,33 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_vehicle_makes/constants/app_constants.dart';
 
 class HttpClient {
-  late final Dio _dio;
+  late final Dio dio;
 
-  HttpClient() {
+  HttpClient(this.dio) {
     var options = BaseOptions(
       baseUrl: BASE_URL,
       connectTimeout: const Duration(seconds: 15),
       receiveTimeout: const Duration(seconds: 15),
     );
 
-    _dio = Dio(options);
-    _dio.interceptors.addAll([
+    dio = Dio(options);
+    dio.interceptors.addAll([
       LogInterceptor(requestBody: true, responseBody: true),
     ]);
   }
+
+  HttpClient.test(this.dio);
 
   Future<dynamic> get(
     String apiURL, {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
-      var response = await _dio.get(apiURL, queryParameters: queryParameters);
+      var response = await dio.get(apiURL, queryParameters: queryParameters);
       return response.data;
     } on DioException catch (e) {
       log('Error logged in HTTP Client GET: ${e.message}');
@@ -46,7 +47,7 @@ class HttpClient {
     bool encodeJson = true,
   }) async {
     try {
-      var response = await _dio.post(apiURL,
+      var response = await dio.post(apiURL,
           options: Options(headers: headers),
           data: encodeJson ? jsonEncode(data) : data,
           queryParameters: queryParameters);
@@ -64,8 +65,8 @@ class HttpClient {
   }
 }
 
-// class HttpException implements Exception {
-//   String errorMessage;
-//
-//   HttpException(this.errorMessage);
-// }
+class HttpException implements Exception {
+  String errorMessage;
+
+  HttpException(this.errorMessage);
+}
