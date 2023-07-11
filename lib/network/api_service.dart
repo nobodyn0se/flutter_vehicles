@@ -1,14 +1,20 @@
 import 'dart:developer';
-import 'dart:io';
 
-import 'package:get/get.dart';
+import 'package:dio/dio.dart';
 
-import './services/http_client.dart';
+import '../network/services/http_client.dart';
 
 class ApiService {
-  HttpClient http = Get.find<HttpClient>();
+  Dio dio;
+  late final HttpClient http;
 
-  ApiService(this.http);
+  ApiService(this.dio) {
+    http = HttpClient(dio);
+  }
+
+  ApiService.test(this.dio) {
+    http = HttpClient.test(dio);
+  }
 
   Future<dynamic> getAllVehicleManufacturers({
     int page = 1,
@@ -17,7 +23,8 @@ class ApiService {
     try {
       String queryParams = 'format=$format&page=$page';
 
-      var response = await http.get('/getallmanufacturers?$queryParams');
+      var response = await http
+          .get('/getallmanufacturers?$queryParams'); // fix these for tests
 
       log('GET response for all manufacturers: $response');
       return response;
