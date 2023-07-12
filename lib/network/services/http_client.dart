@@ -7,7 +7,7 @@ import 'package:flutter_vehicle_makes/constants/app_constants.dart';
 class HttpClient {
   late final Dio dio;
 
-  HttpClient(this.dio) {
+  HttpClient() {
     var options = BaseOptions(
       baseUrl: BASE_URL,
       connectTimeout: const Duration(seconds: 15),

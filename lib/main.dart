@@ -1,13 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vehicle_makes/network/services/api_service.dart';
 import 'package:get/get.dart';
 
-import './network/services/http_client.dart';
 import './routes/app_pages.dart';
 
 void main() {
-  Dio dio = Dio();
-  Get.put<HttpClient>(HttpClient(dio));
+  Get.put<ApiService>(ApiService());
   runApp(const MyApp());
 }
 
