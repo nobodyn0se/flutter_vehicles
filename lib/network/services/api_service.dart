@@ -15,7 +15,7 @@ class ApiService {
     http = HttpClient.test(dio);
   }
 
-  Future<dynamic> getAllVehicleManufacturers({
+  Future<ManufacturersResponse?> getAllVehicleManufacturers({
     int page = 1,
     String format = 'json',
   }) async {
@@ -25,8 +25,8 @@ class ApiService {
       var response = await http
           .get('/getallmanufacturers?$queryParams'); // fix these for tests
 
-      log('GET response for all manufacturers: $response');
-      return response;
+      //log('GET response for all manufacturers: $response');
+      return ManufacturersResponse.fromJson(response);
     } on HttpException {
       return null;
     }
@@ -40,7 +40,7 @@ class ApiService {
       String queryParams = '$manufacturerName?format=$format';
 
       var response = await http.get('/GetMakeForManufacturer/$queryParams');
-      log('GET response for make from $manufacturerName: $response');
+      //log('GET response for make from $manufacturerName: $response');
       return response;
     } on HttpException {
       return null;
