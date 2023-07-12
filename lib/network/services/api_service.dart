@@ -1,15 +1,14 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
+import 'package:flutter_vehicle_makes/models/response/manufacturers_response.dart';
 
 import 'http_client.dart';
 
 class ApiService {
-  Dio dio;
+  late final Dio dio;
   late final HttpClient http;
 
-  ApiService(this.dio) {
-    http = HttpClient(dio);
+  ApiService() {
+    http = HttpClient();
   }
 
   ApiService.test(this.dio) {
