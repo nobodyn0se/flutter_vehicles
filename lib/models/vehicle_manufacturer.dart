@@ -8,7 +8,7 @@ class VehicleManufacturer {
   String country;
 
   @JsonKey(name: 'Mfr_CommonName')
-  String manufacturerCommonName;
+  String? manufacturerCommonName;
 
   @JsonKey(name: 'Mfr_ID')
   int manufacturerID;

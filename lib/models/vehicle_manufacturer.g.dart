@@ -9,7 +9,7 @@ part of 'vehicle_manufacturer.dart';
 VehicleManufacturer _$VehicleManufacturerFromJson(Map<String, dynamic> json) =>
     VehicleManufacturer(
       country: json['Country'] as String,
-      manufacturerCommonName: json['Mfr_CommonName'] as String,
+      manufacturerCommonName: json['Mfr_CommonName'] as String?,
       manufacturerID: json['Mfr_ID'] as int,
       manufacturerName: json['Mfr_Name'] as String,
     );
