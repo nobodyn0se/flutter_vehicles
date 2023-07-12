@@ -1,10 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import './network/services/http_client.dart';
 
 void main() {
-  Get.put<HttpClient>(HttpClient());
+  Dio dio = Dio();
+  Get.put<HttpClient>(HttpClient(dio));
   runApp(const MyApp());
 }
 
