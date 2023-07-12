@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
-import '../network/services/http_client.dart';
+import 'http_client.dart';
 
 class ApiService {
   Dio dio;
