@@ -5,10 +5,15 @@ import '../models/vehicle_manufacturer.dart';
 
 class HomePageController extends GetxController {
   RxBool isLoading = false.obs;
-  RxList<VehicleManufacturer> manufacturersList =
+  List<VehicleManufacturer> manufacturersList = [];
+
+  RxList<VehicleManufacturer> viewManufacturersList =
       RxList<VehicleManufacturer>([]);
 
   int currentLoadedPage = 1;
+
+  int currentItems = 0;
+  final int itemsPerPage = 20;
 
   final ApiService _apiService = Get.find<ApiService>();
 
@@ -23,15 +28,29 @@ class HomePageController extends GetxController {
 
     final response = await _apiService.getAllVehicleManufacturers(page: page);
     if (response != null) {
-      manufacturersList.value = [...response.vehicleManufacturers];
+      manufacturersList = [
+        ...manufacturersList,
+        ...response.vehicleManufacturers
+      ];
+
+      viewManufacturersList.addAll(manufacturersList.getRange(
+          currentItems, currentItems + itemsPerPage));
+
+      currentItems += itemsPerPage;
     }
 
-    //log(manufacturersList.length.toString());
     isLoading.value = false;
   }
 
   loadMorePages() async {
-    ++currentLoadedPage;
-    fetchAllManufacturers(currentLoadedPage);
+    if ((currentItems + itemsPerPage) > manufacturersList.length) {
+      ++currentLoadedPage;
+      fetchAllManufacturers(currentLoadedPage);
+    } else {
+      viewManufacturersList.addAll(manufacturersList.getRange(
+          currentItems, currentItems + itemsPerPage));
+
+      currentItems += itemsPerPage;
+    }
   }
 }
