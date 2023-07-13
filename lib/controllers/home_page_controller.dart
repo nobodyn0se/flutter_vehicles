@@ -5,6 +5,8 @@ import '../models/vehicle_manufacturer.dart';
 
 class HomePageController extends GetxController {
   RxBool isLoading = false.obs;
+  RxBool isPageLoading = false.obs;
+
   List<VehicleManufacturer> manufacturersList = [];
 
   RxList<VehicleManufacturer> viewManufacturersList =
@@ -26,11 +28,13 @@ class HomePageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    isLoading.value = true;
     fetchAllManufacturers(currentLoadedPage);
+    isLoading.value = false;
   }
 
   fetchAllManufacturers(int page) async {
-    isLoading.value = true;
+    isPageLoading.value = true;
 
     final response = await _apiService.getAllVehicleManufacturers(page: page);
     if (response != null) {
@@ -42,13 +46,14 @@ class HomePageController extends GetxController {
           ...response.vehicleManufacturers
         ];
 
-      viewManufacturersList.addAll(manufacturersList.getRange(
-          currentItems, currentItems + itemsPerPage));
+        viewManufacturersList.addAll(manufacturersList.getRange(
+            currentItems, currentItems + itemsPerPage));
 
-      currentItems += itemsPerPage;
+        currentItems += itemsPerPage;
+      }
     }
 
-    isLoading.value = false;
+    isPageLoading.value = false;
   }
 
   loadMorePages() async {
