@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_vehicle_makes/network/services/api_service.dart';
 import 'package:get/get.dart';
 
@@ -10,23 +8,30 @@ class HomePageController extends GetxController {
   RxList<VehicleManufacturer> manufacturersList =
       RxList<VehicleManufacturer>([]);
 
+  int currentLoadedPage = 1;
+
   final ApiService _apiService = Get.find<ApiService>();
 
   @override
   void onInit() {
     super.onInit();
-    //fetchAllManufacturers();
+    fetchAllManufacturers(currentLoadedPage);
   }
 
-  fetchAllManufacturers() async {
+  fetchAllManufacturers(int page) async {
     isLoading.value = true;
 
-    final response = await _apiService.getAllVehicleManufacturers();
+    final response = await _apiService.getAllVehicleManufacturers(page: page);
     if (response != null) {
-      manufacturersList.value = response.vehicleManufacturers;
+      manufacturersList.value = [...response.vehicleManufacturers];
     }
 
-    log(manufacturersList.length.toString());
+    //log(manufacturersList.length.toString());
     isLoading.value = false;
+  }
+
+  loadMorePages() async {
+    ++currentLoadedPage;
+    fetchAllManufacturers(currentLoadedPage);
   }
 }
