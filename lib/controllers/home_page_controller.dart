@@ -17,6 +17,12 @@ class HomePageController extends GetxController {
 
   final ApiService _apiService = Get.find<ApiService>();
 
+  bool get listIsLoading => isLoading.value;
+  bool get listHasError => !isLoading.value && viewManufacturersList.isEmpty;
+
+  //Detect if we have reached the end of responses
+  RxBool listHasNextPage = true.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -28,10 +34,13 @@ class HomePageController extends GetxController {
 
     final response = await _apiService.getAllVehicleManufacturers(page: page);
     if (response != null) {
-      manufacturersList = [
-        ...manufacturersList,
-        ...response.vehicleManufacturers
-      ];
+      listHasNextPage.value = response.count != 0;
+
+      if (response.vehicleManufacturers.isNotEmpty) {
+        manufacturersList = [
+          ...manufacturersList,
+          ...response.vehicleManufacturers
+        ];
 
       viewManufacturersList.addAll(manufacturersList.getRange(
           currentItems, currentItems + itemsPerPage));
