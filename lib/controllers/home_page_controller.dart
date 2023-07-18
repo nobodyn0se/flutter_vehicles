@@ -61,10 +61,14 @@ class HomePageController extends GetxController {
       ++currentLoadedPage;
       fetchAllManufacturers(currentLoadedPage);
     } else {
+      isPageLoading.value = true;
+
       viewManufacturersList.addAll(manufacturersList.getRange(
           currentItems, currentItems + itemsPerPage));
 
       currentItems += itemsPerPage;
+
+      isPageLoading.value = false;
     }
   }
 }
