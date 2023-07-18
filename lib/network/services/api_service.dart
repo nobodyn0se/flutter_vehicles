@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_vehicle_makes/models/response/manufacturers_response.dart';
+import 'package:flutter_vehicle_makes/models/response/vehicle_make_response.dart';
 
 import 'http_client.dart';
 
@@ -32,7 +33,7 @@ class ApiService {
     }
   }
 
-  Future<dynamic> getMakeForManufacturer({
+  Future<VehicleMakeResponse?> getMakeForManufacturer({
     required String manufacturerName,
     String format = 'json',
   }) async {
@@ -41,7 +42,7 @@ class ApiService {
 
       var response = await http.get('/GetMakeForManufacturer/$queryParams');
       //log('GET response for make from $manufacturerName: $response');
-      return response;
+      return VehicleMakeResponse.fromJson(response);
     } on HttpException {
       return null;
     }
