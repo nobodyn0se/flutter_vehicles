@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../pages/details_page.dart';
 import '../pages/home_page.dart';
+import '../pages/models_page.dart';
 
 part 'app_routes.dart';
 
@@ -14,6 +15,10 @@ class AppPages {
     GetPage(
         name: Routes.DETAILS,
         page: () => DetailsPage(),
+        binding: DetailsPageBinding()),
+    GetPage(
+        name: Routes.MODELS,
+        page: () => ModelsPage(),
         binding: DetailsPageBinding()),
     //GetPage(name: Routes.SPLASH),
   ];
