@@ -17,19 +17,18 @@ class HomePageController extends GetxController {
   int currentItems = 0;
   final int itemsPerPage = 20;
 
-  final ApiService _apiService = Get.find<ApiService>();
+  bool get listHasError => currentItems == 0 && isLoading.value == false;
 
-  bool get listIsLoading => isLoading.value;
-  bool get listHasError => !isLoading.value && viewManufacturersList.isEmpty;
+  final ApiService _apiService = Get.find<ApiService>();
 
   //Detect if we have reached the end of responses
   RxBool listHasNextPage = true.obs;
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
     isLoading.value = true;
-    fetchAllManufacturers(currentLoadedPage);
+    await fetchAllManufacturers(currentLoadedPage);
     isLoading.value = false;
   }
 

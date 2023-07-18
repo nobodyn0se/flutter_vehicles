@@ -16,13 +16,12 @@ class HomePage extends GetView<HomePageController> {
       ),
       body: Obx(
         () => controller.isLoading.value
-            ? Center(
+            ? const Center(
                 child: Text('The list is loading...'),
               )
-            : !controller.isLoading.value &&
-                    controller.viewManufacturersList.isEmpty
-                ? Center(child: Text('Oops! Could not display the list'))
-                : ManufacturersListView(controller: controller),
+            : controller.listHasError
+                ? const Center(child: Text('Oops! Could not display the list'))
+                : const ManufacturersListView(),
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: controller.loadMorePages, label: Text('Load More')),
