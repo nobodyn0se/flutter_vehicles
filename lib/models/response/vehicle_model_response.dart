@@ -7,6 +7,7 @@ part 'vehicle_model_response.g.dart';
 
 @JsonSerializable()
 class VehicleModelResponse extends BaseResponse {
+  @JsonKey(name: 'Results')
   List<VehicleModel> vehicleModels;
 
   VehicleModelResponse(

@@ -9,7 +9,7 @@ part of 'vehicle_model_response.dart';
 VehicleModelResponse _$VehicleModelResponseFromJson(
         Map<String, dynamic> json) =>
     VehicleModelResponse(
-      vehicleModels: (json['vehicleModels'] as List<dynamic>)
+      vehicleModels: (json['Results'] as List<dynamic>)
           .map((e) => VehicleModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       count: json['Count'] as int,
@@ -23,5 +23,5 @@ Map<String, dynamic> _$VehicleModelResponseToJson(
       'Count': instance.count,
       'Message': instance.message,
       'SearchCriteria': instance.searchCriteria,
-      'vehicleModels': instance.vehicleModels,
+      'Results': instance.vehicleModels,
     };
