@@ -9,12 +9,12 @@ part of 'manufacturers_response.dart';
 ManufacturersResponse _$ManufacturersResponseFromJson(
         Map<String, dynamic> json) =>
     ManufacturersResponse(
-      message: json['Message'] as String,
-      count: json['Count'] as int,
-      searchCriteria: json['SearchCriteria'] as String?,
       vehicleManufacturers: (json['Results'] as List<dynamic>)
           .map((e) => VehicleManufacturer.fromJson(e as Map<String, dynamic>))
           .toList(),
+      count: json['Count'] as int,
+      message: json['Message'] as String,
+      searchCriteria: json['SearchCriteria'] as String?,
     );
 
 Map<String, dynamic> _$ManufacturersResponseToJson(
