@@ -25,7 +25,8 @@ class ManufacturerCard extends StatelessWidget {
           onTap: () {
             // trim fullstops at the end of the arg manufacturer name
             Get.toNamed('/details/${vehicleManufacturer.manufacturerID}',
-                arguments: vehicleManufacturer.manufacturerName);
+                arguments: vehicleManufacturer.manufacturerCommonName ??
+                    vehicleManufacturer.manufacturerName);
           },
           child: Ink(
             // replaces Container to display ripples
