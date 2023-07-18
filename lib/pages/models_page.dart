@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,9 +13,9 @@ class ModelsPage extends GetView<ModelsPageController> {
       appBar: AppBar(
         title: Text(controller.makeName),
       ),
-      body: Center(
-        child: Text('List of models'),
-      ),
+      body: controller.isLoading.value
+          ? Center(child: CupertinoActivityIndicator())
+          : Center(child: Text('Fetched models for this make')),
     );
   }
 }
