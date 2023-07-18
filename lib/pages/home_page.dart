@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vehicle_makes/controllers/home_page_controller.dart';
-import 'package:flutter_vehicle_makes/models/vehicle_manufacturer.dart';
 import 'package:get/get.dart';
+
+import '../widgets/manufacturers_list_view.dart';
 
 class HomePage extends GetView<HomePageController> {
   const HomePage({Key? key}) : super(key: key);
@@ -14,31 +15,14 @@ class HomePage extends GetView<HomePageController> {
         title: const Text('Vehicle Manufacturers'),
       ),
       body: Obx(
-        () => controller.viewManufacturersList.isEmpty
-            ? Center(child: Text('Oops! Could not display the list'))
-            : Center(
-                child: ListView.builder(
-                  itemCount: controller.viewManufacturersList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    VehicleManufacturer vehicleManufacturer =
-                        controller.viewManufacturersList[index];
-                    return controller.isLoading.value
-                        ? Center(
-                            child: Text('Loading...'),
-                          )
-                        : Card(
-                            child: Column(
-                              children: [
-                                Text(vehicleManufacturer
-                                        .manufacturerCommonName ??
-                                    vehicleManufacturer.manufacturerName),
-                                Text('${vehicleManufacturer.manufacturerID}')
-                              ],
-                            ),
-                          );
-                  },
-                ),
-              ),
+        () => controller.isLoading.value
+            ? Center(
+                child: Text('The list is loading...'),
+              )
+            : !controller.isLoading.value &&
+                    controller.viewManufacturersList.isEmpty
+                ? Center(child: Text('Oops! Could not display the list'))
+                : ManufacturersListView(controller: controller),
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: controller.loadMorePages, label: Text('Load More')),
