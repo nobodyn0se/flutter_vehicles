@@ -36,7 +36,7 @@ class DetailsPageController extends GetxController {
 
     if (response != null) {
       // implement calls for models
-      vehicleMakeList = response.vehicleMakes;
+      vehicleMakeList = response.vehicleMakes.unique((make) => make.makeName);
       for (var make in vehicleMakeList) {
         log('${make.makeName}, ${make.manufacturerName}');
       }
