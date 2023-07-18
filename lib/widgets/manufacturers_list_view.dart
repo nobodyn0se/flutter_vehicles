@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import '../controllers/home_page_controller.dart';
 import '../models/vehicle_manufacturer.dart';
+import 'manufacturer_card.dart';
 
 class ManufacturersListView extends StatelessWidget {
   const ManufacturersListView({
@@ -22,24 +22,16 @@ class ManufacturersListView extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               VehicleManufacturer vehicleManufacturer =
                   controller.viewManufacturersList[index];
-              return Card(
-                child: Column(
-                  children: [
-                    Text(vehicleManufacturer.manufacturerCommonName ??
-                        vehicleManufacturer.manufacturerName),
-                    Text('${vehicleManufacturer.manufacturerID}'),
-                  ],
-                ),
-              );
+              return ManufacturerCard(vehicleManufacturer: vehicleManufacturer);
             },
           ),
         ),
         if (controller.isPageLoading.value)
-          Center(
+          const Center(
             child: CupertinoActivityIndicator(),
           ),
         if (!controller.listHasNextPage.value)
-          Text('You have reached the end of the list')
+          const Text('You have reached the end of the list')
       ],
     );
   }
