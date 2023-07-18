@@ -38,18 +38,18 @@ class VehicleMakeCard extends StatelessWidget {
                 Text(
                   vehicleMake.makeName,
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w600),
+                      fontSize: 18, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
                   vehicleMake.manufacturerName,
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                       color: Colors.blueGrey),
                 ),
               ],
