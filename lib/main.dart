@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vehicle_makes/network/services/api_service.dart';
+import 'package:flutter_vehicle_makes/bindings/home_page_binding.dart';
 import 'package:get/get.dart';
 
 import './routes/app_pages.dart';
 
 void main() {
-  Get.put<ApiService>(ApiService());
   runApp(const MyApp());
 }
 
@@ -21,6 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.cyan,
       ),
       initialRoute: Routes.HOME,
+      initialBinding: HomePageBinding(),
       getPages: AppPages.pages,
     );
   }

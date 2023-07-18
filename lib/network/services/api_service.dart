@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_vehicle_makes/models/response/manufacturers_response.dart';
 import 'package:flutter_vehicle_makes/models/response/vehicle_make_response.dart';
+import 'package:get/get.dart';
 
 import 'http_client.dart';
 
-class ApiService {
+class ApiService extends GetxService {
   late final Dio dio;
   late final HttpClient http;
 
