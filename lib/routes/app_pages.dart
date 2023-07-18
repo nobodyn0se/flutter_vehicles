@@ -1,3 +1,4 @@
+import 'package:flutter_vehicle_makes/bindings/details_page_binding.dart';
 import 'package:flutter_vehicle_makes/bindings/home_page_binding.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,10 @@ class AppPages {
   static final pages = [
     GetPage(
         name: Routes.HOME, page: () => HomePage(), binding: HomePageBinding()),
-    GetPage(name: Routes.DETAILS, page: () => DetailsPage()),
+    GetPage(
+        name: Routes.DETAILS,
+        page: () => DetailsPage(),
+        binding: DetailsPageBinding()),
     //GetPage(name: Routes.SPLASH),
   ];
 }
