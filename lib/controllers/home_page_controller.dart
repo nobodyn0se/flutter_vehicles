@@ -26,8 +26,8 @@ class HomePageController extends GetxController {
   RxBool listHasNextPage = true.obs;
 
   @override
-  void onInit() {
-    super.onInit();
+  void onReady() {
+    super.onReady();
     isLoading.value = true;
     fetchAllManufacturers(currentLoadedPage);
     isLoading.value = false;
