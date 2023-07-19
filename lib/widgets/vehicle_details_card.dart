@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_vehicle_makes/theme/app_theme.dart';
 
-import '../models/vehicle_make.dart';
+class VehicleDetailsCard extends StatelessWidget {
+  const VehicleDetailsCard(
+      {super.key,
+      this.color,
+      required this.title,
+      required this.subtitle,
+      required this.onClick});
 
-class VehicleMakeCard extends StatelessWidget {
-  const VehicleMakeCard({
-    super.key,
-    required this.vehicleMake,
-  });
-
-  final VehicleMake vehicleMake;
+  final Color? color;
+  final String title;
+  final String subtitle;
+  final VoidCallback onClick;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +23,12 @@ class VehicleMakeCard extends StatelessWidget {
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       elevation: 5,
-      color: Colors.cyan.shade100,
+      color: color ?? Colors.cyan.shade100,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           splashColor: Colors.cyan,
-          onTap: () {
-            Get.toNamed('/make/${vehicleMake.makeID}',
-                arguments: vehicleMake.makeName);
-          },
+          onTap: onClick,
           child: Container(
             // inner content padding
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -36,21 +36,17 @@ class VehicleMakeCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  vehicleMake.makeName,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w700),
+                  title,
+                  style: AppTextTheme.textTitleLight,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  vehicleMake.manufacturerName,
+                  subtitle,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.blueGrey),
+                  style: AppTextTheme.textSubtitleLight,
                 ),
               ],
             ),
