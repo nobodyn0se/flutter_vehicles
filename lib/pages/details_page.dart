@@ -30,6 +30,8 @@ class DetailsPage extends GetView<DetailsPageController> {
                         return VehicleDetailsCard(
                           title: vehicleMake.makeName,
                           subtitle: vehicleMake.manufacturerName,
+
+                          // Route to show models for a given make
                           onClick: () => Get.toNamed(
                               '/make/${vehicleMake.makeID}',
                               arguments: vehicleMake.makeName),

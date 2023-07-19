@@ -23,7 +23,7 @@ class ManufacturerCard extends StatelessWidget {
         // needed for InkWell ripple effects
         child: InkWell(
           onTap: () {
-            // trim fullstops at the end of the arg manufacturer name
+            // Route to show makes for a given manufacturer
             Get.toNamed('/details/${vehicleManufacturer.manufacturerID}',
                 arguments: vehicleManufacturer.manufacturerCommonName ??
                     vehicleManufacturer.manufacturerName);
