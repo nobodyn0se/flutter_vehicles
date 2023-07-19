@@ -17,17 +17,21 @@ class ModelsPage extends GetView<ModelsPageController> {
       body: Obx(
         () => controller.isLoading.value
             ? Center(child: CupertinoActivityIndicator())
-            : ListView.builder(
-                itemCount: controller.viewVehicleModels.length,
-                itemBuilder: (BuildContext context, int index) {
-                  VehicleModel vehicleModel =
-                      controller.viewVehicleModels[index];
+            : controller.viewVehicleModels.isEmpty
+                ? Center(
+                    child: Text('Unable to load models for this make'),
+                  )
+                : ListView.builder(
+                    itemCount: controller.viewVehicleModels.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      VehicleModel vehicleModel =
+                          controller.viewVehicleModels[index];
 
-                  return ListTile(
-                    title: Text(vehicleModel.modelName),
-                    subtitle: Text(vehicleModel.makeName),
-                  );
-                }),
+                      return ListTile(
+                        title: Text(vehicleModel.modelName),
+                        subtitle: Text(vehicleModel.makeName),
+                      );
+                    }),
       ),
       floatingActionButton: Obx(
         () => FloatingActionButton.extended(
