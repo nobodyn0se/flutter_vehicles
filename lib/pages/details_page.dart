@@ -3,7 +3,7 @@ import 'package:flutter_vehicle_makes/controllers/details_page_controller.dart';
 import 'package:get/get.dart';
 
 import '../models/vehicle_make.dart';
-import '../widgets/vehicle_make_card.dart';
+import '../widgets/vehicle_details_card.dart';
 
 class DetailsPage extends GetView<DetailsPageController> {
   const DetailsPage({Key? key}) : super(key: key);
@@ -27,7 +27,13 @@ class DetailsPage extends GetView<DetailsPageController> {
                         VehicleMake vehicleMake =
                             controller.vehicleMakeList[index];
 
-                        return VehicleMakeCard(vehicleMake: vehicleMake);
+                        return VehicleDetailsCard(
+                          title: vehicleMake.makeName,
+                          subtitle: vehicleMake.manufacturerName,
+                          onClick: () => Get.toNamed(
+                              '/make/${vehicleMake.makeID}',
+                              arguments: vehicleMake.makeName),
+                        );
                       },
                     ),
                   ),
