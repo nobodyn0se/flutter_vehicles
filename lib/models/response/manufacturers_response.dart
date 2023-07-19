@@ -1,3 +1,4 @@
+import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../vehicle_manufacturer.dart';
@@ -5,8 +6,12 @@ import 'base_response.dart';
 
 part 'manufacturers_response.g.dart';
 
+@collection
 @JsonSerializable()
 class ManufacturersResponse extends BaseResponse {
+  // isar auto-increments this id if nullable
+  Id? id;
+
   @JsonKey(name: 'Results')
   List<VehicleManufacturer> vehicleManufacturers;
 
