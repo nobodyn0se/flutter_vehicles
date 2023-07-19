@@ -51,11 +51,8 @@ void main() {
       when(mockDio.get(any))
           .thenThrow(DioException(requestOptions: RequestOptions()));
 
-      try {
-        final response = await http.get('/testURL');
-      } catch (e) {
-        expect(e, isA<HttpException>());
-      }
+      expect(() async => await http.get('/testURL'),
+          throwsA(isA<HttpException>()));
     });
   });
 }

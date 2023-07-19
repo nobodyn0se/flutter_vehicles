@@ -3,13 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
 import 'package:dio/dio.dart' as _i2;
 import 'package:flutter_vehicle_makes/models/response/manufacturers_response.dart'
-    as _i6;
-import 'package:flutter_vehicle_makes/network/services/api_service.dart' as _i4;
+    as _i7;
+import 'package:flutter_vehicle_makes/models/response/vehicle_make_response.dart'
+    as _i8;
+import 'package:flutter_vehicle_makes/models/response/vehicle_model_response.dart'
+    as _i9;
+import 'package:flutter_vehicle_makes/network/services/api_service.dart' as _i5;
 import 'package:flutter_vehicle_makes/network/services/http_client.dart' as _i3;
+import 'package:get/get.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -43,10 +48,21 @@ class _FakeHttpClient_1 extends _i1.SmartFake implements _i3.HttpClient {
         );
 }
 
+class _FakeInternalFinalCallback_2<T> extends _i1.SmartFake
+    implements _i4.InternalFinalCallback<T> {
+  _FakeInternalFinalCallback_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [ApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockApiService extends _i1.Mock implements _i4.ApiService {
+class MockApiService extends _i1.Mock implements _i5.ApiService {
   MockApiService() {
     _i1.throwOnMissingStub(this);
   }
@@ -84,7 +100,33 @@ class MockApiService extends _i1.Mock implements _i4.ApiService {
         returnValueForMissingStub: null,
       );
   @override
-  _i5.Future<_i6.ManufacturersResponse?> getAllVehicleManufacturers({
+  _i4.InternalFinalCallback<void> get onStart => (super.noSuchMethod(
+        Invocation.getter(#onStart),
+        returnValue: _FakeInternalFinalCallback_2<void>(
+          this,
+          Invocation.getter(#onStart),
+        ),
+      ) as _i4.InternalFinalCallback<void>);
+  @override
+  _i4.InternalFinalCallback<void> get onDelete => (super.noSuchMethod(
+        Invocation.getter(#onDelete),
+        returnValue: _FakeInternalFinalCallback_2<void>(
+          this,
+          Invocation.getter(#onDelete),
+        ),
+      ) as _i4.InternalFinalCallback<void>);
+  @override
+  bool get initialized => (super.noSuchMethod(
+        Invocation.getter(#initialized),
+        returnValue: false,
+      ) as bool);
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+  @override
+  _i6.Future<_i7.ManufacturersResponse?> getAllVehicleManufacturers({
     int? page = 1,
     String? format = r'json',
   }) =>
@@ -97,10 +139,10 @@ class MockApiService extends _i1.Mock implements _i4.ApiService {
             #format: format,
           },
         ),
-        returnValue: _i5.Future<_i6.ManufacturersResponse?>.value(),
-      ) as _i5.Future<_i6.ManufacturersResponse?>);
+        returnValue: _i6.Future<_i7.ManufacturersResponse?>.value(),
+      ) as _i6.Future<_i7.ManufacturersResponse?>);
   @override
-  _i5.Future<dynamic> getMakeForManufacturer({
+  _i6.Future<_i8.VehicleMakeResponse?> getMakeForManufacturer({
     required String? manufacturerName,
     String? format = r'json',
   }) =>
@@ -113,6 +155,54 @@ class MockApiService extends _i1.Mock implements _i4.ApiService {
             #format: format,
           },
         ),
-        returnValue: _i5.Future<dynamic>.value(),
-      ) as _i5.Future<dynamic>);
+        returnValue: _i6.Future<_i8.VehicleMakeResponse?>.value(),
+      ) as _i6.Future<_i8.VehicleMakeResponse?>);
+  @override
+  _i6.Future<_i9.VehicleModelResponse?> getModelsForMake({
+    required String? makeName,
+    String? format = r'json',
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getModelsForMake,
+          [],
+          {
+            #makeName: makeName,
+            #format: format,
+          },
+        ),
+        returnValue: _i6.Future<_i9.VehicleModelResponse?>.value(),
+      ) as _i6.Future<_i9.VehicleModelResponse?>);
+  @override
+  void onInit() => super.noSuchMethod(
+        Invocation.method(
+          #onInit,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onReady() => super.noSuchMethod(
+        Invocation.method(
+          #onReady,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onClose() => super.noSuchMethod(
+        Invocation.method(
+          #onClose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void $configureLifeCycle() => super.noSuchMethod(
+        Invocation.method(
+          #$configureLifeCycle,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

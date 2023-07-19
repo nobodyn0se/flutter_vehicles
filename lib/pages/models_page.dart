@@ -31,6 +31,7 @@ class ModelsPage extends GetView<ModelsPageController> {
       ),
       floatingActionButton: Obx(
         () => FloatingActionButton.extended(
+            // disable button with a grey background if list is exhausted
             onPressed: () => !controller.isEndOfList.value
                 ? controller.loadMoreModels()
                 : null,
