@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter_vehicle_makes/network/services/api_service.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../models/vehicle_manufacturer.dart';
 
@@ -12,6 +16,8 @@ class HomePageController extends GetxController {
   RxList<VehicleManufacturer> viewManufacturersList =
       RxList<VehicleManufacturer>([]);
 
+  late Box manufacturersBox;
+
   int currentLoadedPage = 1;
 
   int currentItems = 0;
@@ -19,10 +25,28 @@ class HomePageController extends GetxController {
 
   bool get listHasError => currentItems == 0 && isLoading.value == false;
 
+  bool isInternetConnected = true;
+
   final ApiService _apiService = Get.find<ApiService>();
 
   //Detect if we have reached the end of responses
   RxBool listHasNextPage = true.obs;
+
+  @override
+  void onInit() async {
+    super.onInit();
+    manufacturersBox = Hive.box('VehicleManufacturers');
+
+    isInternetConnected = await InternetConnectionChecker().hasConnection;
+
+    log('Connectivity : $isInternetConnected');
+
+    if (isInternetConnected) {
+      // clear box data if internet is available
+      manufacturersBox.clear();
+      log('Internet available, box data cleared');
+    }
+  }
 
   @override
   void onReady() async {
@@ -30,6 +54,12 @@ class HomePageController extends GetxController {
     isLoading.value = true;
     await fetchAllManufacturers(currentLoadedPage);
     isLoading.value = false;
+  }
+
+  @override
+  void onClose() {
+    Hive.close();
+    super.onClose();
   }
 
   fetchAllManufacturers(int page) async {
