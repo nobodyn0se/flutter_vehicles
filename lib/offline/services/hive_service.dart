@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter_vehicle_makes/models/response/vehicle_make_response.dart';
+import 'package:flutter_vehicle_makes/models/response/vehicle_model_response.dart';
 import 'package:flutter_vehicle_makes/models/vehicle_make.dart';
+import 'package:flutter_vehicle_makes/models/vehicle_model.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
@@ -18,7 +20,9 @@ class HiveService extends GetxService {
       ..registerAdapter(ManufacturersResponseAdapter())
       ..registerAdapter(VehicleManufacturerAdapter())
       ..registerAdapter(VehicleMakeAdapter())
-      ..registerAdapter(VehicleMakeResponseAdapter());
+      ..registerAdapter(VehicleMakeResponseAdapter())
+      ..registerAdapter(VehicleModelAdapter())
+      ..registerAdapter(VehicleModelResponseAdapter());
   }
 
   clearHiveBox({required Box box}) {
