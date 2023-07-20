@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter_vehicle_makes/constants/app_constants.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -26,7 +27,7 @@ class DetailsPageController extends GetxController {
     // we passed the name through route arguments
     manufacturerName = Get.arguments;
 
-    manufacturersBox = Hive.box('VehicleManufacturers');
+    manufacturersBox = Hive.box(AppConstants.MANUFACTURERS_BOX_NAME);
   }
 
   @override

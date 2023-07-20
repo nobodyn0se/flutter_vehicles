@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter_vehicle_makes/constants/app_constants.dart';
 import 'package:flutter_vehicle_makes/network/services/api_service.dart';
 import 'package:flutter_vehicle_makes/offline/services/hive_service.dart';
 import 'package:get/get.dart';
@@ -37,7 +38,7 @@ class HomePageController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    manufacturersBox = Hive.box('VehicleManufacturers');
+    manufacturersBox = Hive.box(AppConstants.MANUFACTURERS_BOX_NAME);
 
     isInternetConnected = await InternetConnectionChecker().hasConnection;
 
@@ -127,7 +128,7 @@ class HomePageController extends GetxController {
     log('Running offline fetch');
     isLoading.value = true;
 
-    manufacturersBox = Hive.box('VehicleManufacturers');
+    manufacturersBox = Hive.box(AppConstants.MANUFACTURERS_BOX_NAME);
 
     // assigned offline list for display
     var offlineList = manufacturersBox.get('viewManufacturersList');
