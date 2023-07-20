@@ -16,4 +16,10 @@ class HiveService extends GetxService {
       ..registerAdapter(ManufacturersResponseAdapter())
       ..registerAdapter(VehicleManufacturerAdapter());
   }
+
+  clearHiveBox({required Box box}) {
+    // clear box data if internet is available
+    box.clear();
+    log('Internet available, box: ${box.name} cleared');
+  }
 }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_vehicle_makes/network/services/api_service.dart';
+import 'package:flutter_vehicle_makes/offline/services/hive_service.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -28,6 +29,7 @@ class HomePageController extends GetxController {
   bool isInternetConnected = true;
 
   final ApiService _apiService = Get.find<ApiService>();
+  final HiveService _hiveService = Get.find<HiveService>();
 
   //Detect if we have reached the end of responses
   RxBool listHasNextPage = true.obs;
@@ -42,9 +44,7 @@ class HomePageController extends GetxController {
     log('Connectivity : $isInternetConnected');
 
     if (isInternetConnected) {
-      // clear box data if internet is available
-      manufacturersBox.clear();
-      log('Internet available, box data cleared');
+      _hiveService.clearHiveBox(box: manufacturersBox);
     }
   }
 
