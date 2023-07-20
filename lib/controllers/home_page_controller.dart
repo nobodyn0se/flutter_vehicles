@@ -75,8 +75,22 @@ class HomePageController extends GetxController {
           ...response.vehicleManufacturers
         ];
 
+        final offlineList = manufacturersBox.get('viewManufacturersList');
+
+        if (offlineList == null) {
+          // init list if not present
+          manufacturersBox.put('viewManufacturersList', []);
+          log('List init done');
+        }
+
         viewManufacturersList.addAll(manufacturersList.getRange(
             currentItems, currentItems + itemsPerPage));
+
+        manufacturersBox.put('viewManufacturersList', manufacturersList);
+        var offlineManufacturersList =
+            manufacturersBox.get('viewManufacturersList');
+
+        log(offlineManufacturersList.length.toString());
 
         currentItems += itemsPerPage;
       }
