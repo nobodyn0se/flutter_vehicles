@@ -52,7 +52,12 @@ class HomePageController extends GetxController {
   void onReady() async {
     super.onReady();
     isLoading.value = true;
-    await fetchAllManufacturers(currentLoadedPage);
+    // manufacturersBox = Hive.box('VehicleManufacturers');
+    if (isInternetConnected) {
+      await fetchAllManufacturers(currentLoadedPage);
+    } else {
+      offlineFetchAllManufacturers();
+    }
     isLoading.value = false;
   }
 
@@ -115,5 +120,27 @@ class HomePageController extends GetxController {
 
       isPageLoading.value = false;
     }
+  }
+
+  offlineFetchAllManufacturers() {
+    // set references to offline list
+    log('Running offline fetch');
+    isLoading.value = true;
+
+    manufacturersBox = Hive.box('VehicleManufacturers');
+
+    // assigned offline list for display
+    var offlineList = manufacturersBox.get('viewManufacturersList');
+
+    if (offlineList != null) {
+      manufacturersList = List<VehicleManufacturer>.from(offlineList);
+
+      viewManufacturersList.addAll(manufacturersList.getRange(
+          currentItems, currentItems + itemsPerPage));
+
+      currentItems += itemsPerPage;
+    }
+
+    isLoading.value = false;
   }
 }
