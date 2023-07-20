@@ -101,8 +101,10 @@ class HomePageController extends GetxController {
 
   loadMorePages() async {
     if ((currentItems + itemsPerPage) > manufacturersList.length) {
-      ++currentLoadedPage;
-      fetchAllManufacturers(currentLoadedPage);
+      if (listHasNextPage.value && isInternetConnected) {
+        ++currentLoadedPage;
+        fetchAllManufacturers(currentLoadedPage);
+      }
     } else {
       isPageLoading.value = true;
 
