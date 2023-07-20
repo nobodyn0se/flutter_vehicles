@@ -16,6 +16,7 @@ void main() async {
 
   hiveService.registerAllHiveAdapters();
   await hiveService.openHiveBox(boxName: AppConstants.MANUFACTURERS_BOX_NAME);
+  await hiveService.openHiveBox(boxName: AppConstants.MODELS_BOX_NAME);
   runApp(const MyApp());
 }
 
