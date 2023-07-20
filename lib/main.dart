@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vehicle_makes/bindings/home_page_binding.dart';
+import 'package:flutter_vehicle_makes/offline/services/hive_service.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import './routes/app_pages.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+
+  Get.put<HiveService>(HiveService());
+  final hiveService = Get.find<HiveService>();
+
+  hiveService.registerAllHiveAdapters();
+  await hiveService.openHiveBox(boxName: 'VehicleManufacturers');
   runApp(const MyApp());
 }
 
