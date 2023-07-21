@@ -5,4 +5,7 @@ class AppConstants {
   static const String MODELS_BOX_NAME = 'VehicleModelsBox';
 
   static const String ERROR_IMAGE = 'assets/images/internet_error.jpg';
+
+  static const Duration LOADING_ANIMATION_DURATION =
+      Duration(milliseconds: 500);
 }
