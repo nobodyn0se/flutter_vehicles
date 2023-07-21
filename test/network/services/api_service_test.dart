@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_vehicle_makes/models/response/manufacturers_response.dart';
 import 'package:flutter_vehicle_makes/network/services/api_service.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -11,12 +12,19 @@ void main() {
 
   group('Successful GET calls', () {
     test('GET all manufacturers after a successful HTTP call', () async {
+      ManufacturersResponse manufacturersResponse =
+          ManufacturersResponse(vehicleManufacturers: []);
       when(mockApiService.getAllVehicleManufacturers())
-          .thenAnswer((_) => Future.value());
+          .thenAnswer((_) async => manufacturersResponse);
 
-      mockApiService.getAllVehicleManufacturers(page: 1, format: 'json');
+      final response = await mockApiService.getAllVehicleManufacturers(
+          page: 1, format: 'json');
+
       verify(mockApiService.getAllVehicleManufacturers(page: 1, format: 'json'))
           .called(1);
+
+      expect(response, isA<ManufacturersResponse>());
+      expect(response, equals(manufacturersResponse));
     });
 
     test('GET make details after a successful HTTP call', () async {
