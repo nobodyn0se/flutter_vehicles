@@ -45,9 +45,6 @@ void main() {
     });
 
     test('Throws exception after an unsuccessful HTTP GET call', () async {
-      // when(mockDio.get(any))
-      //     .thenThrow(DioException(requestOptions: RequestOptions()));
-
       when(mockDio.get(any))
           .thenThrow(DioException(requestOptions: RequestOptions()));
 

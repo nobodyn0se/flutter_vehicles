@@ -55,7 +55,6 @@ class ModelsPageController extends GetxController {
 
       // store fetched vehicle models to Hive box
       final offlineList = modelsBox.get(makeName);
-
       if (offlineList == null) {
         modelsBox.put(makeName, vehicleModels);
       }
@@ -71,7 +70,7 @@ class ModelsPageController extends GetxController {
 
   loadMoreModels() {
     if ((currentItems + itemsPerPage) > vehicleModels.length) {
-      //end of the list
+      // end of the list
       if (!isEndOfList.value) {
         viewVehicleModels
             .addAll(vehicleModels.getRange(currentItems, vehicleModels.length));
