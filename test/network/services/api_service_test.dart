@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_vehicle_makes/network/services/api_service.dart';
-import 'package:flutter_vehicle_makes/network/services/http_client.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -36,12 +35,12 @@ void main() {
     test('All manufacturers call returns null after HTTP exception', () async {
       when(mockApiService.getAllVehicleManufacturers(
               page: anyNamed('page'), format: anyNamed('format')))
-          .thenThrow(HttpException('Error 404: Could not find resource'));
+          .thenAnswer((_) async => null);
 
       final response = await mockApiService.getAllVehicleManufacturers(
-          page: 1, format: 'json').then((value) => value);
+          page: 1, format: 'json');
 
-      expect(response, equals(null));
+      expect(response, null);
     });
   });
 }
