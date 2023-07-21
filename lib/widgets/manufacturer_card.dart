@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vehicle_makes/models/vehicle_manufacturer.dart';
 import 'package:get/get.dart';
 
+import '../theme/app_theme.dart';
+
 class ManufacturerCard extends StatelessWidget {
   const ManufacturerCard({
     super.key,
@@ -31,15 +33,7 @@ class ManufacturerCard extends StatelessWidget {
           child: Ink(
             // replaces Container to display ripples
             decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF8672F3),
-                    Color(0xFF7763DC),
-                    Colors.purpleAccent,
-                    Colors.amber,
-                  ]),
+              gradient: AppTheme.cardLinearGradient,
             ),
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),

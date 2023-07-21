@@ -13,4 +13,13 @@ class AppTextTheme {
 
 class AppTheme {
   // placeholder for UI themes in the app
+  static const LinearGradient cardLinearGradient = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Color(0xFF8672F3),
+        Color(0xFF7763DC),
+        Colors.purpleAccent,
+        Colors.amber,
+      ]);
 }
