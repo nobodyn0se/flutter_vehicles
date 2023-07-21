@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vehicle_makes/widgets/loader/loading_shimmer.dart';
+import 'package:flutter_vehicle_makes/widgets/vehicle_details_card.dart';
 import 'package:get/get.dart';
 
 import '../controllers/models_page_controller.dart';
@@ -27,10 +29,10 @@ class ModelsPage extends GetView<ModelsPageController> {
                       VehicleModel vehicleModel =
                           controller.viewVehicleModels[index];
 
-                      return ListTile(
-                        title: Text(vehicleModel.modelName),
-                        subtitle: Text(vehicleModel.makeName),
-                      );
+                      return VehicleDetailsCard(
+                          title: vehicleModel.modelName,
+                          subtitle: vehicleModel.makeName,
+                          onClick: () {});
                     }),
       ),
       floatingActionButton: Obx(
