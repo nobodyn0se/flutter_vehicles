@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.HOME,
       initialBinding: HomePageBinding(),
       getPages: AppPages.pages,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
