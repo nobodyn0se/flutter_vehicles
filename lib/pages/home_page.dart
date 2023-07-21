@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vehicle_makes/controllers/home_page_controller.dart';
 import 'package:get/get.dart';
 
+import '../theme/app_theme.dart';
+import '../widgets/loader/loading_shimmer.dart';
 import '../widgets/manufacturers_list_view.dart';
 
 class HomePage extends GetView<HomePageController> {
@@ -16,13 +18,14 @@ class HomePage extends GetView<HomePageController> {
       ),
       body: Obx(
         () => controller.isLoading.value
-            ? const Center(
-                child: Text('The list is loading...'),
+            ? const LoadingShimmer(
+                gradient: AppTheme.cardLinearGradient,
               )
             : controller.listHasError
                 ? const Center(child: Text('Oops! Could not display the list'))
                 : const ManufacturersListView(),
       ),
+      // body: LoadingShimmer(),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: controller.loadMorePages, label: Text('Load More')),
     );
