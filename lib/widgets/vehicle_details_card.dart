@@ -5,13 +5,15 @@ class VehicleDetailsCard extends StatelessWidget {
   const VehicleDetailsCard(
       {super.key,
       this.color,
+      required this.titleTextColor,
+      required this.subtitleTextColor,
       required this.title,
       required this.subtitle,
       required this.onClick});
 
   final Color? color;
-  final String title;
-  final String subtitle;
+  final Color titleTextColor, subtitleTextColor;
+  final String title, subtitle;
   final VoidCallback onClick;
 
   @override
