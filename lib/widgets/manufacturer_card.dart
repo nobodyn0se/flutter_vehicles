@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vehicle_makes/models/vehicle_manufacturer.dart';
 import 'package:get/get.dart';
 
-import '../theme/app_theme.dart';
-
 class ManufacturerCard extends StatelessWidget {
   const ManufacturerCard({
     super.key,
@@ -32,8 +30,9 @@ class ManufacturerCard extends StatelessWidget {
           },
           child: Ink(
             // replaces Container to display ripples
-            decoration: const BoxDecoration(
-              gradient: AppTheme.cardLinearGradient,
+            decoration: BoxDecoration(
+              // gradient: AppTheme.cardLinearGradient,
+              color: Colors.cyan.shade100,
             ),
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -45,20 +44,30 @@ class ManufacturerCard extends StatelessWidget {
                         vehicleManufacturer.manufacturerName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: Colors.cyan.shade900,
+                      fontWeight: FontWeight.w600,
                       fontSize: 22,
                       //fontFamily: "monospace",
                     ),
                   ),
+                  const SizedBox(
+                    height: 3,
+                  ),
                   Text(
                     vehicleManufacturer.country,
-                    style: const TextStyle(
-                      color: Color(0xFFDCCECE),
+                    style: TextStyle(
+                      color: Colors.cyan.shade700,
                       fontSize: 18,
                     ),
                   ),
-                  Text('${vehicleManufacturer.manufacturerID}'),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  Text(
+                    '${vehicleManufacturer.manufacturerID}',
+                    style: const TextStyle(color: Colors.cyan),
+                  ),
                 ],
               ),
             ),
