@@ -18,7 +18,7 @@ class HomePageController extends GetxController {
   RxList<VehicleManufacturer> viewManufacturersList =
       RxList<VehicleManufacturer>([]);
 
-  late Box manufacturersBox;
+  late Box manufacturersBox, modelsBox;
 
   int currentLoadedPage = 1;
 
@@ -39,13 +39,15 @@ class HomePageController extends GetxController {
   void onInit() async {
     super.onInit();
     manufacturersBox = Hive.box(AppConstants.MANUFACTURERS_BOX_NAME);
+    modelsBox = Hive.box(AppConstants.MODELS_BOX_NAME);
 
     isInternetConnected = await InternetConnectionChecker().hasConnection;
-
-    log('Connectivity : $isInternetConnected');
+    log('Connectivity Home: $isInternetConnected');
 
     if (isInternetConnected) {
+      // clear previous data from the box
       _hiveService.clearHiveBox(box: manufacturersBox);
+      _hiveService.clearHiveBox(box: modelsBox);
     }
   }
 
@@ -53,7 +55,7 @@ class HomePageController extends GetxController {
   void onReady() async {
     super.onReady();
     isLoading.value = true;
-    // manufacturersBox = Hive.box('VehicleManufacturers');
+
     if (isInternetConnected) {
       await fetchAllManufacturers(currentLoadedPage);
     } else {
@@ -92,11 +94,8 @@ class HomePageController extends GetxController {
         viewManufacturersList.addAll(manufacturersList.getRange(
             currentItems, currentItems + itemsPerPage));
 
+        // add network data to offLineList and save to box
         manufacturersBox.put('viewManufacturersList', manufacturersList);
-        var offlineManufacturersList =
-            manufacturersBox.get('viewManufacturersList');
-
-        log(offlineManufacturersList.length.toString());
 
         currentItems += itemsPerPage;
       }
@@ -108,6 +107,8 @@ class HomePageController extends GetxController {
   loadMorePages() async {
     if ((currentItems + itemsPerPage) > manufacturersList.length) {
       if (listHasNextPage.value && isInternetConnected) {
+        // make a network call only if network access available and
+        // API returned > 0 results in the previous call
         ++currentLoadedPage;
         fetchAllManufacturers(currentLoadedPage);
       }
