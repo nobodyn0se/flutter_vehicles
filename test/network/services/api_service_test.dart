@@ -42,5 +42,16 @@ void main() {
 
       expect(response, null);
     });
+
+    test('Vehicle make call returns null after HTTP exception', () async {
+      when(mockApiService.getMakeForManufacturer(
+              manufacturerName: anyNamed('manufacturerName')))
+          .thenAnswer((_) async => null);
+
+      final response = await mockApiService.getMakeForManufacturer(
+          manufacturerName: 'manufacturerName');
+
+      expect(response, null);
+    });
   });
 }
