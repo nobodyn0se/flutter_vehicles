@@ -7,9 +7,10 @@ class LoadingShimmer extends StatelessWidget {
   final double? itemExtent;
   final int? itemCount;
   final Gradient? gradient;
+  final Color? color;
 
   const LoadingShimmer(
-      {Key? key, this.gradient, this.itemExtent, this.itemCount})
+      {Key? key, this.gradient, this.itemExtent, this.itemCount, this.color})
       : super(key: key);
 
   @override
@@ -20,6 +21,7 @@ class LoadingShimmer extends StatelessWidget {
         : Loader(
             itemExtent: itemExtent,
             itemCount: itemCount,
+            color: color,
           );
   }
 }

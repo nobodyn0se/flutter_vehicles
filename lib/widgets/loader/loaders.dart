@@ -98,7 +98,7 @@ class Loader extends StatelessWidget {
     return ListView(
       children: [
         const Padding(
-          padding: EdgeInsets.only(top: 10.0),
+          padding: EdgeInsets.only(top: 20.0),
           child: CupertinoActivityIndicator(
             radius: 15,
           ),
