@@ -4,6 +4,7 @@ import 'package:flutter_vehicle_makes/widgets/loader/loading_shimmer.dart';
 import 'package:get/get.dart';
 
 import '../models/vehicle_make.dart';
+import '../widgets/error/error_view.dart';
 import '../widgets/vehicle_details_card.dart';
 
 class DetailsPage extends GetView<DetailsPageController> {
@@ -17,7 +18,7 @@ class DetailsPage extends GetView<DetailsPageController> {
       ),
       body: Obx(
         () => !controller.listHasMakes.value
-            ? const Center(child: Text('Nothing to display here'))
+            ? const ErrorView(parameterName: 'makes')
             : controller.isLoading.value
                 ? const LoadingShimmer(
                     itemExtent: 100,

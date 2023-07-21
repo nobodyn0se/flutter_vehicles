@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../controllers/models_page_controller.dart';
 import '../models/vehicle_model.dart';
+import '../widgets/error/error_view.dart';
 
 class ModelsPage extends GetView<ModelsPageController> {
   const ModelsPage({Key? key}) : super(key: key);
@@ -22,9 +23,7 @@ class ModelsPage extends GetView<ModelsPageController> {
                 itemCount: 6,
               )
             : controller.viewVehicleModels.isEmpty
-                ? Center(
-                    child: Text('Unable to load models for this make'),
-                  )
+                ? const ErrorView(parameterName: 'models')
                 : ListView.builder(
                     itemCount: controller.viewVehicleModels.length,
                     itemBuilder: (BuildContext context, int index) {

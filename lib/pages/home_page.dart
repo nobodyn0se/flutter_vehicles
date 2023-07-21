@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vehicle_makes/controllers/home_page_controller.dart';
+import 'package:flutter_vehicle_makes/widgets/error/error_view.dart';
 import 'package:get/get.dart';
 
 import '../theme/app_theme.dart';
@@ -22,7 +23,7 @@ class HomePage extends GetView<HomePageController> {
                 gradient: AppTheme.cardLinearGradient,
               )
             : controller.listHasError
-                ? const Center(child: Text('Oops! Could not display the list'))
+                ? const ErrorView(parameterName: 'manufacturers')
                 : const ManufacturersListView(),
       ),
       // body: LoadingShimmer(),
