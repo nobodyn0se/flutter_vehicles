@@ -16,15 +16,19 @@ class ModelsPage extends GetView<ModelsPageController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        title: Text(controller.makeName),
+        title: Text(
+          controller.makeName,
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
       body: Obx(
         () => AnimatedSwitcher(
           duration: AppConstants.LOADING_ANIMATION_DURATION,
           child: controller.isLoading.value
-              ? const LoadingShimmer(
+              ? LoadingShimmer(
                   itemExtent: 100,
                   itemCount: 6,
+                  color: Colors.indigo.shade100,
                 )
               : controller.viewVehicleModels.isEmpty
                   ? const ErrorView(parameterName: 'models')
@@ -50,10 +54,12 @@ class ModelsPage extends GetView<ModelsPageController> {
             onPressed: () => !controller.isEndOfList.value
                 ? controller.loadMoreModels()
                 : null,
-            backgroundColor: controller.isEndOfList.value
-                ? Colors.grey
-                : Theme.of(context).primaryColor,
-            label: Text('Load more')),
+            backgroundColor:
+                controller.isEndOfList.value ? Colors.grey : Colors.indigo,
+            label: const Text(
+              'Load more',
+              style: TextStyle(color: Colors.white),
+            )),
       ),
     );
   }
