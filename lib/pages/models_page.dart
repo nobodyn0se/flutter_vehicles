@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vehicle_makes/widgets/loader/loading_shimmer.dart';
 import 'package:flutter_vehicle_makes/widgets/vehicle_details_card.dart';
@@ -18,7 +17,10 @@ class ModelsPage extends GetView<ModelsPageController> {
       ),
       body: Obx(
         () => controller.isLoading.value
-            ? Center(child: CupertinoActivityIndicator())
+            ? const LoadingShimmer(
+                itemExtent: 100,
+                itemCount: 6,
+              )
             : controller.viewVehicleModels.isEmpty
                 ? Center(
                     child: Text('Unable to load models for this make'),
