@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_vehicle_makes/models/response/manufacturers_response.dart';
+import 'package:flutter_vehicle_makes/models/response/vehicle_make_response.dart';
+import 'package:flutter_vehicle_makes/models/response/vehicle_model_response.dart';
 import 'package:flutter_vehicle_makes/network/services/api_service.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -28,14 +30,20 @@ void main() {
     });
 
     test('GET make details after a successful HTTP call', () async {
+      VehicleMakeResponse vehicleMakeResponse =
+          VehicleMakeResponse(vehicleMakes: []);
       when(mockApiService.getMakeForManufacturer(
               manufacturerName: anyNamed('manufacturerName')))
-          .thenAnswer((_) => Future.value());
+          .thenAnswer((_) async => vehicleMakeResponse);
 
-      mockApiService.getMakeForManufacturer(manufacturerName: 'Test');
+      final response =
+          await mockApiService.getMakeForManufacturer(manufacturerName: 'Test');
 
       verify(mockApiService.getMakeForManufacturer(manufacturerName: 'Test'))
           .called(1);
+
+      expect(response, isA<VehicleMakeResponse>());
+      expect(response, vehicleMakeResponse);
     });
   });
 
