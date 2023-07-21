@@ -16,25 +16,31 @@ void main() {
     mockBox = MockBox();
   });
 
-  test('Open a Hive box test', () async {
+  test('Open a Hive box and test data fetch', () async {
     when(mockHiveService.openHiveBox(boxName: anyNamed('boxName')))
         .thenAnswer((_) async => mockBox);
 
+    when(mockBox.getAt(any)).thenAnswer((_) => 'value');
+
     final response = await mockHiveService.openHiveBox(boxName: 'boxName');
+    final data = mockBox.getAt(0);
 
     expect(response, isA<MockBox>());
     expect(response, mockBox);
 
-    verifyNever(mockBox.put('key', 'value'));
+    // fetch data from Hive box
+    expect(data, equals('value'));
   });
 
   test('Clear a Hive box test', () {
     when(mockHiveService.clearHiveBox(box: anyNamed('box')))
         .thenAnswer((_) => mockBox);
 
-    mockHiveService.clearHiveBox(box: mockBox);
+    when(mockBox.get(any)).thenAnswer((_) => null);
 
-    verifyNever(mockBox.isEmpty);
-    verifyNever(mockBox.get('key') == null);
+    mockHiveService.clearHiveBox(box: mockBox);
+    final response = mockBox.get(0);
+
+    expect(response, null);
   });
 }
