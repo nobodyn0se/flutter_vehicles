@@ -45,6 +45,21 @@ void main() {
       expect(response, isA<VehicleMakeResponse>());
       expect(response, vehicleMakeResponse);
     });
+
+    test('GET models list after a successful HTTP call', () async {
+      VehicleModelResponse vehicleModelResponse =
+          VehicleModelResponse(vehicleModels: []);
+      when(mockApiService.getModelsForMake(makeName: anyNamed('makeName')))
+          .thenAnswer((_) async => vehicleModelResponse);
+
+      final response =
+          await mockApiService.getModelsForMake(makeName: 'makeName');
+
+      verify(mockApiService.getModelsForMake(makeName: 'makeName')).called(1);
+
+      expect(response, isA<VehicleModelResponse>());
+      expect(response, vehicleModelResponse);
+    });
   });
 
   group('Unsuccessful GET calls', () {
