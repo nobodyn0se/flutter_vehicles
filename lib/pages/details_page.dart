@@ -15,6 +15,7 @@ class DetailsPage extends GetView<DetailsPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.lightGreen,
         title: Text(controller.manufacturerName),
       ),
       body: Obx(
@@ -36,6 +37,9 @@ class DetailsPage extends GetView<DetailsPageController> {
                               controller.vehicleMakeList[index];
 
                           return VehicleDetailsCard(
+                            color: Colors.lightGreen.shade100,
+                            titleTextColor: Colors.lightGreen.shade900,
+                            subtitleTextColor: Colors.lightGreen.shade700,
                             title: vehicleMake.makeName,
                             subtitle: vehicleMake.manufacturerName,
 

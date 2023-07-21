@@ -15,6 +15,7 @@ class ModelsPage extends GetView<ModelsPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigo,
         title: Text(controller.makeName),
       ),
       body: Obx(
@@ -34,6 +35,9 @@ class ModelsPage extends GetView<ModelsPageController> {
                             controller.viewVehicleModels[index];
 
                         return VehicleDetailsCard(
+                            color: Colors.indigo.shade100,
+                            titleTextColor: Colors.indigo.shade900,
+                            subtitleTextColor: Colors.indigo.shade700,
                             title: vehicleModel.modelName,
                             subtitle: vehicleModel.makeName,
                             onClick: () {});
