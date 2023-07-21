@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vehicle_makes/constants/app_constants.dart';
 import 'package:flutter_vehicle_makes/controllers/details_page_controller.dart';
 import 'package:flutter_vehicle_makes/widgets/loader/loading_shimmer.dart';
 import 'package:get/get.dart';
@@ -17,33 +18,36 @@ class DetailsPage extends GetView<DetailsPageController> {
         title: Text(controller.manufacturerName),
       ),
       body: Obx(
-        () => !controller.listHasMakes.value
-            ? const ErrorView(parameterName: 'makes')
-            : controller.isLoading.value
-                ? const LoadingShimmer(
-                    itemExtent: 100,
-                    itemCount: 3,
-                  )
-                : Container(
-                    margin: const EdgeInsets.only(top: 25),
-                    child: ListView.builder(
-                      itemCount: controller.vehicleMakeList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        VehicleMake vehicleMake =
-                            controller.vehicleMakeList[index];
+        () => AnimatedSwitcher(
+          duration: AppConstants.LOADING_ANIMATION_DURATION,
+          child: controller.isLoading.value
+              ? const LoadingShimmer(
+                  itemExtent: 100,
+                  itemCount: 3,
+                )
+              : !controller.listHasMakes.value
+                  ? const ErrorView(parameterName: 'makes')
+                  : Container(
+                      margin: const EdgeInsets.only(top: 25),
+                      child: ListView.builder(
+                        itemCount: controller.vehicleMakeList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          VehicleMake vehicleMake =
+                              controller.vehicleMakeList[index];
 
-                        return VehicleDetailsCard(
-                          title: vehicleMake.makeName,
-                          subtitle: vehicleMake.manufacturerName,
+                          return VehicleDetailsCard(
+                            title: vehicleMake.makeName,
+                            subtitle: vehicleMake.manufacturerName,
 
-                          // Route to show models for a given make
-                          onClick: () => Get.toNamed(
-                              '/make/${vehicleMake.makeID}',
-                              arguments: vehicleMake.makeName),
-                        );
-                      },
+                            // Route to show models for a given make
+                            onClick: () => Get.toNamed(
+                                '/make/${vehicleMake.makeID}',
+                                arguments: vehicleMake.makeName),
+                          );
+                        },
+                      ),
                     ),
-                  ),
+        ),
       ),
     );
   }

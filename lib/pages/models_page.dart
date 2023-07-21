@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vehicle_makes/constants/app_constants.dart';
 import 'package:flutter_vehicle_makes/widgets/loader/loading_shimmer.dart';
 import 'package:flutter_vehicle_makes/widgets/vehicle_details_card.dart';
 import 'package:get/get.dart';
@@ -17,24 +18,27 @@ class ModelsPage extends GetView<ModelsPageController> {
         title: Text(controller.makeName),
       ),
       body: Obx(
-        () => controller.isLoading.value
-            ? const LoadingShimmer(
-                itemExtent: 100,
-                itemCount: 6,
-              )
-            : controller.viewVehicleModels.isEmpty
-                ? const ErrorView(parameterName: 'models')
-                : ListView.builder(
-                    itemCount: controller.viewVehicleModels.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      VehicleModel vehicleModel =
-                          controller.viewVehicleModels[index];
+        () => AnimatedSwitcher(
+          duration: AppConstants.LOADING_ANIMATION_DURATION,
+          child: controller.isLoading.value
+              ? const LoadingShimmer(
+                  itemExtent: 100,
+                  itemCount: 6,
+                )
+              : controller.viewVehicleModels.isEmpty
+                  ? const ErrorView(parameterName: 'models')
+                  : ListView.builder(
+                      itemCount: controller.viewVehicleModels.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        VehicleModel vehicleModel =
+                            controller.viewVehicleModels[index];
 
-                      return VehicleDetailsCard(
-                          title: vehicleModel.modelName,
-                          subtitle: vehicleModel.makeName,
-                          onClick: () {});
-                    }),
+                        return VehicleDetailsCard(
+                            title: vehicleModel.modelName,
+                            subtitle: vehicleModel.makeName,
+                            onClick: () {});
+                      }),
+        ),
       ),
       floatingActionButton: Obx(
         () => FloatingActionButton.extended(
