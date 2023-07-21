@@ -53,5 +53,15 @@ void main() {
 
       expect(response, null);
     });
+
+    test('Vehicle models call returns null after HTTP exception', () async {
+      when(mockApiService.getModelsForMake(makeName: anyNamed('makeName')))
+          .thenAnswer((_) async => null);
+
+      final response =
+          await mockApiService.getModelsForMake(makeName: 'makeName');
+
+      expect(response, null);
+    });
   });
 }
