@@ -22,9 +22,10 @@ class DetailsPage extends GetView<DetailsPageController> {
         () => AnimatedSwitcher(
           duration: AppConstants.LOADING_ANIMATION_DURATION,
           child: controller.isLoading.value
-              ? const LoadingShimmer(
+              ? LoadingShimmer(
                   itemExtent: 100,
                   itemCount: 3,
+                  color: Colors.lightGreen.shade100,
                 )
               : !controller.listHasMakes.value
                   ? const ErrorView(parameterName: 'makes')
