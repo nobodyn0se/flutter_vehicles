@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vehicle_makes/controllers/details_page_controller.dart';
+import 'package:flutter_vehicle_makes/widgets/loader/loading_shimmer.dart';
 import 'package:get/get.dart';
 
 import '../models/vehicle_make.dart';
@@ -18,7 +19,10 @@ class DetailsPage extends GetView<DetailsPageController> {
         () => !controller.listHasMakes.value
             ? const Center(child: Text('Nothing to display here'))
             : controller.isLoading.value
-                ? const Center(child: Text('Loading makes...'))
+                ? const LoadingShimmer(
+                    itemExtent: 100,
+                    itemCount: 3,
+                  )
                 : Container(
                     margin: const EdgeInsets.only(top: 25),
                     child: ListView.builder(
