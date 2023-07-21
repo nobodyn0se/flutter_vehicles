@@ -15,7 +15,7 @@ class ManufacturerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
