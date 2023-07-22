@@ -87,7 +87,7 @@ Current version: v1.1.2
 - [ ] Dynamically disable the Load More button on home page
 - [ ] Change font styling of the app
 - [ ] Introduce dark/light theme toggle using BLoC
-- [ ] Add a custom logo to the app
+- [x] Add a custom logo to the app
 
 
 
