@@ -53,7 +53,7 @@ flutter pub get
 Thereafter, open an emulator (iOS/Android) on your device and run the app through your IDE UI or CLI command `flutter run`.
 
 ### Unit testing
-A few unit tests are included with the current version of the app. These unit tests can be run using the command `flutter test test/<oathNameOfTest.dart>` for instance `flutter test test/network/services/api_service_test.dart`.
+A few unit tests are included with the current version of the app. These unit tests can be run using the command `flutter test test/<pathNameOfTest.dart>` for instance `flutter test test/network/services/api_service_test.dart`.
 
 ### Version Info
 Current version: v1.1.2
