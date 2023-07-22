@@ -64,6 +64,14 @@ A few unit tests are included with the current version of the app. These unit te
 ### Version Info
 Current version: v1.1.2
 
+### App Screenshots
+<img src="https://github.com/nobodyn0se/flutter_vehicles/blob/442a11883ebe3d488deb753334aac069b8b6e2eb/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.30.16.png" width="320"> <img src="https://github.com/nobodyn0se/flutter_vehicles/blob/442a11883ebe3d488deb753334aac069b8b6e2eb/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.30.25.png" width="320"> <img src="https://github.com/nobodyn0se/flutter_vehicles/blob/442a11883ebe3d488deb753334aac069b8b6e2eb/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.31.33.png" width="320"> 
+
+<img src="https://github.com/nobodyn0se/flutter_vehicles/blob/442a11883ebe3d488deb753334aac069b8b6e2eb/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.31.10.png" width="320"> <img src="https://github.com/nobodyn0se/flutter_vehicles/blob/main/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.32.11.png" width="320"> <img src="https://github.com/nobodyn0se/flutter_vehicles/blob/442a11883ebe3d488deb753334aac069b8b6e2eb/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.31.22.png" width="320">
+
+<img src="https://github.com/nobodyn0se/flutter_vehicles/blob/442a11883ebe3d488deb753334aac069b8b6e2eb/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.32.48.png" width="320"> <img src="https://github.com/nobodyn0se/flutter_vehicles/blob/442a11883ebe3d488deb753334aac069b8b6e2eb/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.48.40.png" width="320"> <img src="https://github.com/nobodyn0se/flutter_vehicles/blob/442a11883ebe3d488deb753334aac069b8b6e2eb/ui_snaps/Simulator%20Screenshot%20-%20iPhone%2014%20-%202023-07-22%20at%2003.41.13.png" width="320">
+
+
 ### Checklist for pending items
 - [ ] Make the app network aware using connectivity listeners
 - [ ] Enhance pagination with higher modularity
