@@ -6,6 +6,8 @@ This simple application lists vehicles manufacturers fetched from a publicly lis
 
 The first page (home page) will display a list of all vehicle manufacturers fetched from the API. Each list item can be clicked and navigate to a separate page (details page) that will display a list of makes manufactured by that manufacturer. Upon further clicking the make, you will find a list of all the models of that make on the models page.
 
+#### Download Link (Android AAB/APK): https://drive.google.com/drive/folders/1qAi7m1P_crMtATZ89Q8zWhHne1KDWs56?usp=sharing
+
 #### How does offline storage work?
 The offline storage will be cleared and updated for a new session if the internet is accessible during any subsequent app runs. Example, if you view 2 pages of vehicle manufacturers while connected to the web, they will be stored to the offline DB. If you further view the makes or models for a manufacturer by clicking on individual list items, that data would also be stored offline. 
 
@@ -42,6 +44,7 @@ The overall architecture of the app closely resembles MVVM implementation with p
 > /services - Contains methods and definitions which can be used through a singleton instance of a particular service. The instance will be injected using GetX dependency injection support (Get.put() or Get.lazyPut()). This is an abstraction layer between controllers and network/db.
 
 ### How to install it?
+#### Debug/development purposes
 In order to test the app for development/debugging purposes, clone this repository onto your local machine. Run the following commands from your terminal, with your current working directory set to a location of your choice.
 
 ```
@@ -51,6 +54,9 @@ flutter pub get
 ```
 
 Thereafter, open an emulator (iOS/Android) on your device and run the app through your IDE UI or CLI command `flutter run`.
+
+#### General use case
+If you just wish to try out the app to get a hang of it, simply download and execute the APK from the provided download link at the beginning of this README file. Once installed, open the app with an internet connection to load some data, then happy testing!
 
 ### Unit testing
 A few unit tests are included with the current version of the app. These unit tests can be run using the command `flutter test test/<pathNameOfTest.dart>` for instance `flutter test test/network/services/api_service_test.dart`.
@@ -69,6 +75,7 @@ Current version: v1.1.2
 - [ ] Dynamically disable the Load More button on home page
 - [ ] Change font styling of the app
 - [ ] Introduce dark/light theme toggle using BLoC
+- [ ] Add a custom logo to the app
 
 
 
