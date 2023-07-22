@@ -24,7 +24,15 @@ dependencies:
   hive_flutter: ^1.1.0
   internet_connection_checker: ^1.0.0+1
   shimmer: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/vehicle_icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
+  resize_behavior: shrink_only
 
 dev_dependencies:
   flutter_test:
