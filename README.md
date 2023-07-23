@@ -79,6 +79,7 @@ Current version: v1.1.2
 ### Checklist for pending items
 - [ ] Make the app network aware using connectivity listeners
 - [ ] Enhance pagination with higher modularity
+- [ ] Show snackbars for user feedback
 - [ ] Increase unit testing coverage
 - [ ] Write widget tests
 - [ ] Localize strings using the EasyLocalization package
